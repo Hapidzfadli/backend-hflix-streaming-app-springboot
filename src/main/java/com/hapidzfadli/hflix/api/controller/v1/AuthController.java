@@ -4,6 +4,7 @@ import com.hapidzfadli.hflix.app.service.UserService;
 import com.hapidzfadli.hflix.app.service.impl.JwtTokenProvider;
 import com.hapidzfadli.hflix.config.JwtProperties;
 import com.hapidzfadli.hflix.domain.entity.User;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@Tag(name = "Authentication", description = "User authentication API")
 public class AuthController {
 
     @Autowired

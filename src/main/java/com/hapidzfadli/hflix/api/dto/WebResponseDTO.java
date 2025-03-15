@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
@@ -102,5 +101,4 @@ public class WebResponseDTO<T> {
                 .timestamp(LocalDateTime.now())
                 .build();
     }
-
 }
