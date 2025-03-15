@@ -3,6 +3,7 @@ package com.hapidzfadli.hflix.app.service.impl;
 import com.hapidzfadli.hflix.app.service.UserService;
 import com.hapidzfadli.hflix.domain.entity.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,9 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 
 @Service
-@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
