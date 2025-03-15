@@ -5,6 +5,7 @@ import com.hapidzfadli.hflix.api.dto.UserDTO;
 import com.hapidzfadli.hflix.api.dto.WebResponseDTO;
 import com.hapidzfadli.hflix.app.service.UserService;
 import com.hapidzfadli.hflix.domain.entity.User;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
+@SecurityRequirement(name = "BearerAuth")
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
