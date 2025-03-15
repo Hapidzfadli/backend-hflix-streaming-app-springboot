@@ -27,8 +27,8 @@ import java.util.Arrays;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
-
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
@@ -36,7 +36,7 @@ public class SecurityConfig {
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    @Bean
+    @Bean  // define been because with define been we can inject password encoder in another places without making object manually
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder(12);
     }
@@ -69,9 +69,7 @@ public class SecurityConfig {
                         authorize
                                 .requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers("/api/public/**").permitAll()
-                                // Swagger/OpenAPI endpoints - make sure all paths are accessible
-                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/api-docs/**",
-                                        "/v3/api-docs.yaml", "/swagger-ui/index.html").permitAll()
+                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())
@@ -91,4 +89,5 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
 }

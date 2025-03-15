@@ -4,17 +4,11 @@ import com.hapidzfadli.hflix.app.service.UserService;
 import com.hapidzfadli.hflix.app.service.impl.JwtTokenProvider;
 import com.hapidzfadli.hflix.config.JwtProperties;
 import com.hapidzfadli.hflix.domain.entity.User;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/api/auth")
-@Tag(name = "Authentication", description = "Authentication API for login and registration")
+@RequiredArgsConstructor
 public class AuthController {
 
     @Autowired
@@ -43,28 +37,7 @@ public class AuthController {
     @Autowired
     private JwtProperties jwtProperties;
 
-    @Operation(
-            summary = "Register a new user",
-            description = "Creates a new user account with the provided details"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "201",
-                    description = "User registered successfully",
-                    content = @Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = WebResponseDTO.class)
-                    )
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Invalid input data",
-                    content = @Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = WebResponseDTO.class)
-                    )
-            )
-    })
+
     @PostMapping("/register")
     public ResponseEntity<WebResponseDTO<UserDTO>> register(@Valid @RequestBody RegisterRequestDTO registerRequestDTO) {
         User user = new User();
@@ -85,28 +58,6 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @Operation(
-            summary = "Authenticate user",
-            description = "Authenticates a user and returns a JWT token"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Login successful",
-                    content = @Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = WebResponseDTO.class)
-                    )
-            ),
-            @ApiResponse(
-                    responseCode = "401",
-                    description = "Authentication failed",
-                    content = @Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = WebResponseDTO.class)
-                    )
-            )
-    })
     @PostMapping("/login")
     public ResponseEntity<WebResponseDTO<JwtResponseDTO>> login(@Valid @RequestBody LoginRequestDTO loginRequest) {
         log.info("Authenticating user: {}", loginRequest.getUsername());
