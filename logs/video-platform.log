@@ -18303,3 +18303,16 @@ Caused by: java.lang.ClassNotFoundException: com.hapidzfadli.hflix.domain.entity
 2025-03-15 18:53:07.442 INFO  [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
 2025-03-15 18:53:07.446 INFO  [restartedMain] c.hapidzfadli.hflix.HflixApplication - Started HflixApplication in 2.041 seconds (process running for 683.93)
 2025-03-15 18:53:07.447 INFO  [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-03-15 18:53:23.142 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat-2].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-15 18:53:23.142 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-15 18:53:23.143 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-03-15 18:53:23.154 INFO  [http-nio-8080-exec-1] c.h.h.a.controller.v1.AuthController - Authenticating user: hapidzfadli
+2025-03-15 18:53:51.443 DEBUG [http-nio-8080-exec-2] c.h.h.config.JwtAuthenticationFilter - Set Authentication to security context for 'hapidzfadli' with role [ROLE_USER]
+2025-03-15 19:01:02.035 WARN  [HikariPool-13 housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-13 - Thread starvation or clock leap detected (housekeeper delta=55s366ms646µs300ns).
+2025-03-15 19:49:55.046 WARN  [HikariPool-13 housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-13 - Thread starvation or clock leap detected (housekeeper delta=44m52s952ms566µs600ns).
+2025-03-15 20:16:51.983 WARN  [HikariPool-13 housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-13 - Thread starvation or clock leap detected (housekeeper delta=20m56s858ms414µs500ns).
+2025-03-15 20:27:33.138 INFO  [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-15 20:27:33.149 INFO  [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-15 20:27:33.153 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-15 20:27:33.154 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-13 - Shutdown initiated...
+2025-03-15 20:27:33.157 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-13 - Shutdown completed.
