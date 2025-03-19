@@ -2,6 +2,8 @@ package com.hapidzfadli.hflix.domain.repository;
 
 import com.hapidzfadli.hflix.domain.entity.Video;
 import com.hapidzfadli.hflix.domain.entity.VideoFormat;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -60,4 +62,15 @@ public interface VideoFormatRepository extends JpaRepository<VideoFormat, Long> 
      * @return The number of video formats that are completed for the specific video.
      */
     long countByVideoAndStatus(Video video, VideoFormat.Status status);
+
+    /**
+     * Counts the number of formats associated with a specific video.
+     * Used to display the total number of encoding formats available for a video.
+     *
+     * @param video The video whose formats are to be counted.
+     * @return The number of video formats associated with the specific video.
+     */
+    long countByVideo(Video video);
+
+    Page<Video> findByVisibilityAndStatus(Video.Visibility visibility, Video.Status status, Pageable pageable);
 }

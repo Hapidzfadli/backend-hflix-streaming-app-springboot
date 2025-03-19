@@ -84,4 +84,6 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
             "(:keyword IS NULL OR LOWER(v.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
             "LOWER(v.description) LIKE LOWER(CONCAT('%', :keyword, '%')))")
     Page<Video> searchUserVideos(@Param("user") User user, @Param("keyword") String keyword, Pageable pageable);
+
+    Page<Video> findByVisibilityAndStatus(Video.Visibility visibility, Video.Status status, Pageable pageable);
 }
